@@ -62,7 +62,8 @@ class CompaniesController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        $company = Company::where('id', $company->id)->first();
+        return view('companies.edit', ['company' => $company]);
     }
 
     /**
