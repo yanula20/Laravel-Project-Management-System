@@ -14,7 +14,7 @@
     <!-- Example row of columns -->
     <div style="background: white; margin: 10px; ">
 
-            <!--<a href="/projects/create/{{ $company->id }}" class="pull-right btn btn-default btn-sm">Add Project</a>-->
+            <a href="/projects/create/{{ $company->id }}" class="pull-right btn btn-primary btn-sm">Add Project</a>
             
             @foreach($company->projects as $project)
 
@@ -46,7 +46,7 @@
 
             <li><a href="/companies/{{$company->id}}/edit">Edit</a></li>
 
-            <li><a href="/projects/create">Add Project</a></li>
+            <li><a href="/projects/create/{{ $company->id }}">Add Project</a></li>
 
             <li><a href="/companies">All Companies</a></li>
 

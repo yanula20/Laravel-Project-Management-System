@@ -15,9 +15,18 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
+        //$companies = Company::all();
+        if( Auth::check()) {
 
-        return view('companies.index', ['companies' => $companies]);
+            $companies = Company::where('user_id', Auth::user()->id)->get();
+
+            return view('companies.index', ['companies' => $companies]);
+
+        } else {
+
+            return view('auth.login');
+        }
+        
     }
 
     /**
@@ -50,15 +59,15 @@ class CompaniesController extends Controller
                 ]);
         } 
 
-            if($company) {
+        if($company) {
 
-                return redirect()->route('companies.show', ['company' => $company->id])->with('success', 'Company created!');
+            return redirect()->route('companies.show', ['company' => $company->id])->with('success', 'Company created!');
 
-            } else {
+        } else {
 
-                return back()->withInput()->with('errors', 'Error creating new company');
+            return back()->withInput()->with('errors', 'Error creating new company');
 
-            }      
+        }      
     
     }
 
