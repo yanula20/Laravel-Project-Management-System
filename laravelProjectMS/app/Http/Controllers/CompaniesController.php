@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompaniesController extends Controller
 {
@@ -26,7 +27,7 @@ class CompaniesController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -37,7 +38,28 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::check()) {
+
+            $company = Company::create(
+                [
+                    'name' => $request->input('name'),
+
+                    'description' => $request->input('description'), 
+
+                    'user_id' => Auth::user()->id
+                ]);
+        } 
+
+            if($company) {
+
+                return redirect()->route('companies.show', ['company' => $company->id])->with('success', 'Company created!');
+
+            } else {
+
+                return back()->withInput()->with('errors', 'Error creating new company');
+
+            }      
+    
     }
 
     /**
@@ -63,6 +85,7 @@ class CompaniesController extends Controller
     public function edit(Company $company)
     {
         $company = Company::where('id', $company->id)->first();
+
         return view('companies.edit', ['company' => $company]);
     }
 
@@ -75,7 +98,23 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $companyUpdate = Company::where('id', $company->id)->update([
+
+            'name' => $request->input('name'),
+
+            'description' => $request->input('description')
+
+            ]);
+
+        if($companyUpdate) {
+
+            return redirect()->route('companies.show', ['company' => $company->id])->with('success', 'Company updated sucessfully!');
+
+        } else {
+
+            return back()->withInput()->with('error', 'Company information not updated!');
+        }
+        
     }
 
     /**
@@ -86,6 +125,18 @@ class CompaniesController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $findCompany = Company::where('id', $company->id);
+
+        if (!$findCompany) {
+
+            return back()->withInput()->with('error', 'Something went wrong in the database!');
+            
+        } else {
+
+            $findCompany->delete();
+
+            return redirect()->route('companies.index')->with('success', 'Company deleted successfully!');
+            
+        }
     }
 }

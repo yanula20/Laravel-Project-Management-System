@@ -48,7 +48,7 @@
      <div class="sidebar-module">
         <h4>Actions</h4>
         <ol class="list-unstyled">
-          <li><a href="/companies">Back to All Companies</a></li>
+          <li><a href="/companies">All Companies</a></li>
           <li><a href="/companies/{{$company->id}}">Back to {{$company->name}}</a></li>
         </ol>
     </div>

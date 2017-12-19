@@ -20,8 +20,10 @@
 
                 <div class="col-lg-4 col-md-4 col-sm-4">
 
-                  <h2>{{ $project->name }}</h2>
+                  <h3>{{ $project->name }}</h3>
+
                   <p class="text-danger"> {{$project->description}} </p>
+
                   <p><a class="btn btn-primary" href="/projects/{{ $project->id }}" role="button"> View Project »</a></p>
 
                 </div>
@@ -36,13 +38,47 @@
         <h4>About</h4>
         <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
     </div>-->
-     <div class="sidebar-module">
+    <div class="sidebar-module">
+
         <h4>Actions</h4>
+
         <ol class="list-unstyled">
-          <li><a href="/companies/{{$company->id}}/edit">Edit</a></li>
-          <li><a href="#">Delete</a></li>
-           <li><a href="#">Add new member</a></li>
+
+            <li><a href="/companies/{{$company->id}}/edit">Edit</a></li>
+
+            <li><a href="/projects/create">Add Project</a></li>
+
+            <li><a href="/companies">All Companies</a></li>
+
+            <li><a href="/companies/create">New Company</a></li>
+            
+            </br>
+
+            <li>
+                <a   
+                href="#" onclick=" 
+
+                    var result = confirm('Are you sure you wish to delete this Company?');
+
+                        if( result ){
+
+                            event.preventDefault();
+
+                            document.getElementById('delete-form').submit();
+                        }
+                " style="color: red;" >Delete</a>
+
+                <form id="delete-form" action="{{ route('companies.destroy',[$company->id]) }}" method="POST" style="display: none;">
+
+                    <input type="hidden" name="_method" value="delete">
+
+                        {{ csrf_field() }}
+                </form>
+              
+            </li>
+
         </ol>
+
     </div>
 
     <!--<div class="sidebar-module">
@@ -53,7 +89,6 @@
          
         </ol>
     </div>-->
-
    
 
  </div>
