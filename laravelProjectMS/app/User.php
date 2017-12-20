@@ -26,7 +26,7 @@ class User extends Authenticatable
     ];
 
 
-    //Comment model - user owns many comments
+    //Comment model - opens commentable_id and commentable_type
     public function comments()
     {
         return $this->morphMany('App\Comment', 'commentable');
