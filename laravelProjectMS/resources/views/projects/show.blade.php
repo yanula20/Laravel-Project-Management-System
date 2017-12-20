@@ -24,7 +24,7 @@
     </div>
     
     <!--Add Comment button -->
-     <a href="/comments/create/{{ $project->id }}" style="margin-top: 7px;" class="pull-right btn btn-primary btn-sm">Add Comment</a>
+     <!--<a href="/comments/create/{{ $project->id }}" style="margin-top: 7px;" class="pull-right btn btn-primary btn-sm">Add Comment</a>-->
 
     </br> 
     </br> 
@@ -56,7 +56,7 @@
             </div>
             
             <!-- Comments hidden fields -->
-            <input type="hidden" name="commentable_type" value="Project">
+            <input type="hidden" name="commentable_type" value="App\Project">
 
             <input type="hidden" name="commentable_id"  value="{{ $project->id }}">
              <!-- Comments hidden fields -->
@@ -75,15 +75,15 @@
     <!-- Example row of columns -->
     <div style="background: white; margin: 10px;">
             
-            {{-- foreach through project comments
+            <!-- foreach through project's comments for a list-->
 
-            @foreach($project->projects as $project)
+            @foreach($project->comments as $comment)
 
                 <div class="col-lg-4 col-md-4 col-sm-4">
 
-                  <h3>{{ $project->name }}</h3>
+                  <h2>{{ $comment->body }}</h2>
 
-                  <p class="text-danger"> {{$project->description}} </p>
+                  <p class="text-danger"> {{$comment->url}} </p>
 
                   <p><a class="btn btn-primary" href="/projects/{{ $project->id }}" role="button"> View Project »</a></p>
 
@@ -91,7 +91,7 @@
 
             @endforeach
 
-            --}}
+            
     </div>
 
 </div>
