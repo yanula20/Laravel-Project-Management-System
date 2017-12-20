@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Project;
+use App\Company;
 use App\Comment;
+use App\ProjectUser;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
@@ -35,9 +39,33 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        if(Auth::check()) {
 
+            $comment = Comment::create(
+                [
+                    'body' => $request->input('body'),
+
+                    'url' => $request->input('url'), 
+
+                    'commentable_type' => $request->input('commentable_type'), 
+
+                    'commentable_id' => $request->input('commentable_id'), 
+
+                    'user_id' => Auth::user()->id
+                ]);
+        } 
+
+        if($comment) {
+
+            return back()->with('success', 'Comment created!');
+
+        } else {
+
+            return back()->withInput()->with('errors', 'Error creating new comment');
+
+        }      
+    
+    }
     /**
      * Display the specified resource.
      *
@@ -46,7 +74,9 @@ class CommentsController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        $comment = Comment::where('id', $company->id)->first();
+
+        return view('comments.show', ['comment' => $comment]);
     }
 
     /**

@@ -3,8 +3,12 @@
 
 <div class="row col-md-9 col-lg-9 col-sm-9 pull-left ">
 
+   
+
     <!-- Example row of columns -->
     <div class="row col-sm-12 col-md-12 col-lg-12" style="background: white; margin: 10px; ">
+
+         <h3>Edit Company</h3>
 
         <form method="post" action="{{ route('companies.update',[$company->id]) }}">
                                 {{ csrf_field() }}

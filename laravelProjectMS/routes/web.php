@@ -30,21 +30,32 @@ Route::get('/about', function () {
     ]);
 });
 
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('comments', 'CommentsController');
+Route::middleware(['auth'])->group(function() {
 
-Route::resource('companies', 'CompaniesController');
+	Route::resource('comments', 'CommentsController');
 
-Route::resource('projects', 'ProjectsController');
+	Route::resource('companies', 'CompaniesController');
 
-Route::resource('roles', 'RolesController');
+	//user may be coming from a link or new w/o a company_id
+	Route::get('projects/create/{company_id?}', 'ProjectsController@create');
 
-Route::resource('tasks', 'TasksController');
+	Route::resource('projects', 'ProjectsController');
 
-Route::resource('users', 'UsersController');
+	Route::resource('roles', 'RolesController');
+
+	Route::resource('tasks', 'TasksController');
+
+	Route::resource('users', 'UsersController');
+
+});
+
+
 
 
 

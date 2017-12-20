@@ -37,6 +37,11 @@ class Task extends Model
     {
         return $this->belongsToMany('App\User', 'TaskUser');
     }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 }
 
 

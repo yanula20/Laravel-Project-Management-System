@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Project;
 use App\Company;
+use App\ProjectUser;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
 
 class CompaniesController extends Controller
 {

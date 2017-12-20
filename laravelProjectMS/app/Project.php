@@ -32,6 +32,11 @@ class Project extends Model
     {
         return $this->belongsToMany('App\User', 'ProjectUser');
     }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 }
 
 

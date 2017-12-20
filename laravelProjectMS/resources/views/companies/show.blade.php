@@ -24,7 +24,7 @@
 
                   <p class="text-danger"> {{$project->description}} </p>
 
-                  <p><a class="btn btn-primary" href="/projects/{{ $project->id }}" role="button"> View Project »</a></p>
+                  <p><a class="btn btn-primary" href="{{ route('projects.show', [$project->id])}}" role="button"> View Project »</a></p>
 
                 </div>
 
@@ -34,10 +34,7 @@
 </div>
 
 <div class="col-sm-3 col-md-3 col-lg-3 pull-right">
-    <!--<div class="sidebar-module sidebar-module-inset">
-        <h4>About</h4>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-    </div>-->
+  
     <div class="sidebar-module">
 
         <h4>Actions</h4>
@@ -53,30 +50,31 @@
             <li><a href="/companies/create">New Company</a></li>
             
             </br>
+            
+                <li>
+                    <a   
+                    href="#" onclick=" 
 
-            <li>
-                <a   
-                href="#" onclick=" 
+                        var result = confirm('Are you sure you wish to delete this Company?');
 
-                    var result = confirm('Are you sure you wish to delete this Company?');
+                            if( result ){
 
-                        if( result ){
+                                event.preventDefault();
 
-                            event.preventDefault();
+                                document.getElementById('delete-form').submit();
+                            }
+                    " style="color: red;" >Delete
 
-                            document.getElementById('delete-form').submit();
-                        }
-                " style="color: red;" >Delete</a>
+                    </a>
 
-                <form id="delete-form" action="{{ route('companies.destroy',[$company->id]) }}" method="POST" style="display: none;">
+                    <form id="delete-form" action="{{ route('companies.destroy',[$company->id]) }}" method="POST" style="display: none;">
 
-                    <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_method" value="delete">
 
-                        {{ csrf_field() }}
-                </form>
-              
-            </li>
+                            {{ csrf_field() }}
+                    </form>
 
+                </li>
         </ol>
 
     </div>
