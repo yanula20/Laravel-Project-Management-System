@@ -29,7 +29,7 @@ class Comment extends Model
 	//User model - comment belongs to 1 user
 	 public function user()
 	 {
-	     return $this->hasOne('App\User', 'id', 'user_id');
+	     return $this->hasOne('\App\User', 'id', 'user_id', 'first_name', 'middle_name', 'last_name', 'email', 'city');
 	 }
 
 

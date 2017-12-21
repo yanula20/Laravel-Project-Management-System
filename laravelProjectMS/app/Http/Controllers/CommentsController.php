@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use App\Project;
 use App\Company;
 use App\Comment;
@@ -57,6 +58,7 @@ class CommentsController extends Controller
 
         if($comment) {
 
+
             return back()->with('success', 'Comment created!');
 
         } else {
@@ -74,9 +76,7 @@ class CommentsController extends Controller
      */
     public function show(Comment $comment)
     {
-        $comment = Comment::where('id', $company->id)->first();
-
-        return view('comments.show', ['comment' => $comment]);
+        
     }
 
     /**
