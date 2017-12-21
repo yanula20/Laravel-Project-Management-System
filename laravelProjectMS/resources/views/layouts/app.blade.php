@@ -37,17 +37,18 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    @if(Auth::user()->role_id === 1)
-                        <ul class="nav navbar-nav">
-                            &nbsp;
-                            <li><a href="{{ route('users.index') }}"><i class="fa fa-users" aria-hidden="true"></i> All Users</a></li>
-                            <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
-                            <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
-                            <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
-                            <li><a href="{{ route('roles.index')}}"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></i> All Roles</a></li>                                    
-                        </ul>
+                    @if(Auth::check())
+                        @if(Auth::user()->role_id === 1)
+                            <ul class="nav navbar-nav">
+                                &nbsp;
+                                <li><a href="{{ route('users.index') }}"><i class="fa fa-users" aria-hidden="true"></i> All Users</a></li>
+                                <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
+                                <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
+                                <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
+                                <li><a href="{{ route('roles.index')}}"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></i> All Roles</a></li>                                    
+                            </ul>
+                        @endif
                     @endif
-
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
