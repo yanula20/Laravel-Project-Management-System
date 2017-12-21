@@ -93,12 +93,16 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
+        $company = Company::where('id', $project->company_id)->first();
+
+        //$company = Company::find($project->company_id)->first();
 
         $project = Project::where('id', $project->id)->first();
 
         $comments = $project->comments;
        
-        return view('projects.show', ['project' => $project, 'comments' => $comments]);  
+        return view('projects.show', ['project' => $project, 'company' => $company, 'comments' => $comments]);
+        
     }
 
     /**

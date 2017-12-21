@@ -21,7 +21,9 @@ class CompaniesController extends Controller
     public function index()
     {
         //$companies = Company::all();
+
         if( Auth::check()) {
+
 
             $companies = Company::where('user_id', Auth::user()->id)->get();
 
@@ -84,6 +86,7 @@ class CompaniesController extends Controller
      */
     public function show(Company $company)
     {
+
         $company = Company::where('id', $company->id)->first();
         //$company = Company::find($company->id);
         return view('companies.show', ['company' => $company]);

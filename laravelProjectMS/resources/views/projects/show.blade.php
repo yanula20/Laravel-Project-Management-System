@@ -6,8 +6,10 @@
     <div class="row col-md-9 col-lg-9 col-sm-9 pull-left ">
 
         <div class="well well-lg" style="background: white; margin: 2px;">
-       
-            <h1>{{ $project->name }}</h1>
+            
+            <h1>{{ $company->name }}</h1>
+           
+            <h2>{{ $project->name }}</h2>
 
             <p class="lead">{{ $project->description }}</p>
 
