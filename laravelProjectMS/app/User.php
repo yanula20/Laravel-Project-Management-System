@@ -43,7 +43,7 @@ class User extends Authenticatable
     //ProjectUser model - user belongs to many projects
     public function projects()
     {
-        return $this->belongsToMany('App\Project', 'ProjectUser');
+        return $this->belongsToMany('App\Project');
     }
 
     //Role model - user belongs to 1 role
@@ -56,7 +56,7 @@ class User extends Authenticatable
     //TaskUser model - user belongs to many tasks
     public function tasks()
     {
-        return $this->belongsToMany('App\Task', 'TaskUser');
+        return $this->belongsToMany('App\Task');
     }
 
 

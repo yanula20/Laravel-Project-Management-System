@@ -18,7 +18,7 @@ class Task extends Model
     //Company model - task belongs to 1 company  
     public function company()
     {
-        return $this->belongsTo('App\Project');
+        return $this->belongsTo('App\Company');
     }
 
     //Project model - task belongs to 1 project
@@ -26,16 +26,12 @@ class Task extends Model
     {
         return $this->belongsTo('App\Project');
     }
-    //User model - task belongs to 1 user
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+   
 
     //TaskUser - task belongs to many users
     public function users()
     {
-        return $this->belongsToMany('App\User', 'TaskUser');
+        return $this->belongsToMany('App\User');
     }
 
     public function comments()

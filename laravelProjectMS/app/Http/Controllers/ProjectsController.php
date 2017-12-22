@@ -105,6 +105,36 @@ class ProjectsController extends Controller
         
     }
 
+
+    public function adduser(Request $request)
+    {
+
+        $project = Project::find( $request->input('project_id') ); //hidden form input
+
+        if(Auth::user()->id === $project->user_id) { 
+
+            $user = User::where('email', $request->input('email'))->first(); 
+
+            $projectUser = ProjectUser::where('user_id', $user->id)->where('project_id', $project->id)->first();
+
+            if($projectUser) {
+
+                return redirect()->route('projects.show', [ 'project' => $project->id])->with('errors', $request->input('email').' is already member of this Project!');
+            }
+
+                if($user && $project) {
+
+                    $project->users()->attach($user->id); //attach the user to the project, then to ProjectUser
+
+                    return redirect()->route('projects.show', [ 'project' => $project->id])->with('success', $request->input('email').' was added successfully');
+                }    
+
+        }
+
+        return redirect()->route('projects.show', [ 'project' => $project->id])->with('errors', $request->input('email').' This is not your project.');
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

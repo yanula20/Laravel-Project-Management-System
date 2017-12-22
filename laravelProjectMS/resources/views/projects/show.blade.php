@@ -6,7 +6,8 @@
     <div class="row col-md-9 col-lg-9 col-sm-9 pull-left ">
 
         <div class="well well-lg" style="background: white; margin: 2px;">
-            
+        {{'project_id '.$project->id}}</br>
+        {{'user_id '.$project->user_id}}
             <h1>{{ $company->name }}</h1>
            
             <h2>{{ $project->name }}</h2>
@@ -95,8 +96,7 @@
                 <li><a href="/projects/{{$project->id}}/edit">Edit Project</a></li>
 
                 <li><a href="/projects">All projects</a></li>
-                
-                </br>
+              
                 
                 @if($project->user_id === Auth::user()->id)
 
@@ -126,14 +126,45 @@
                 @endif 
 
             </ol>
+            <br/>
+            
             <!-- Add members -->
             <div class="row">
-
-                <div class="col-lg-6">
-
+                <div class="col-lg-12 col-md-12 col-sm-12 ol-xs-12">
+                    <h5>Add Members to Project</h5>
                     <div class="input-group">
 
-                        <span class="input-group-btn"><button class="btn btn-secondary" type="button">Add Members</button></span><input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                         <form id="add-user" method="POST" action="{{ route('projects.adduser') }}">
+
+                            {{ csrf_field() }}
+
+                            <div class="input-group">
+                                
+                                <input type="hidden" name="project_id" value="{{$project->id}}" class="form-control">
+
+                                <span class="input-group-btn">Go!
+                                    <button style="border-color: lightgray;" type="submit" class="btn btn-default">Add!</button>
+                                </span><input type="text" name="email" required autofocus class="form-control" placeholder="Email" aria-label="Search for...">
+                               
+                            </div>
+                                
+                        </form>
+ 
+                    </div>
+                        <br/>
+                    <div>
+                        
+                        <h5>Team Members</h5>
+
+                        <ol class="list-unstyled">
+                            
+                            @foreach($project->users as $user)
+
+                                <li><a>{{ $user->email }}</a></li>
+
+                            @endforeach
+
+                        </ol>
 
                     </div>
 

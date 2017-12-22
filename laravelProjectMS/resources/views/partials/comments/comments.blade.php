@@ -4,7 +4,7 @@
     <div class="row col-md-9 col-lg-9 col-sm-9"><!--row-->
     </br>
     </br>
-        <div style="background: red; margin: 10px;">
+        <div style="background: white; margin: 10px;">
                 
                 <!-- foreach through project's comments for a list-->
 
