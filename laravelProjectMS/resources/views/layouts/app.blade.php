@@ -135,12 +135,11 @@
                 @include('partials.errors')
                 @include('partials.success')
             </div>
-
-            <div class="row">
-              @yield('content')  
-            </div> 
-
         </div>
+           
+        @yield('content')  
+            
+        
     </div>
 
     <!-- Scripts -->

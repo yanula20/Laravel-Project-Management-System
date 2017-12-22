@@ -126,9 +126,21 @@
                 @endif 
 
             </ol>
+            <!-- Add members -->
+            <div class="row">
 
-        </div>  
+                <div class="col-lg-6">
 
+                    <div class="input-group">
+
+                        <span class="input-group-btn"><button class="btn btn-secondary" type="button">Add Members</button></span><input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+
+                    </div>
+
+                </div>
+
+            </div>  
+             <!-- Add members -->
      </div>
 </div>
 <!-- side bar menu -->                   

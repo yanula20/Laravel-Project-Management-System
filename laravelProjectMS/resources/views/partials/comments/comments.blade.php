@@ -1,83 +1,84 @@
  <!-- Example row of columns -->
 
-<div class="row col-md-9 col-lg-9 col-sm-9"><!--row-->
-</br>
-</br>
-    <div style="background: white; margin: 10px;">
-            
-            <!-- foreach through project's comments for a list-->
+<div class="row col-md-12 col-lg-12 col-sm-12 pull-left">
+    <div class="row col-md-9 col-lg-9 col-sm-9"><!--row-->
+    </br>
+    </br>
+        <div style="background: red; margin: 10px;">
+                
+                <!-- foreach through project's comments for a list-->
 
-            @foreach($comments as $comment)
+                @foreach($comments as $comment)
+                
+                    <div class="col-sm-1">
+                        <div class="thumbnail">
+                            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                        </div><!-- /thumbnail -->
+                    </div><!-- /col-sm-1 -->
+              
+                    <div class="col-sm-5">
 
-                <div class="col-sm-1">
-                    <div class="thumbnail">
-                        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                    </div><!-- /thumbnail -->
-                </div><!-- /col-sm-1 -->
+                        <div class="panel panel-default">
 
-                <div class="col-sm-5">
+                            <div class="panel-heading">
 
-                    <div class="panel panel-default">
+                                <strong>{{$comment->url}}</strong></br>
 
-                        <div class="panel-heading">
+                                <span class="text-muted"> {{$comment->created_at}}</span>
+                                
+                                @switch($comment->user)
 
-                            <strong>{{$comment->url}}</strong></br>
+                                    @case($comment->user->first_name != null)
 
-                            <span class="text-muted"> {{$comment->created_at}}</span>
-                            
-                            @switch($comment->user)
+                                        <a href="users/{{$comment->user_id}}">{{$comment->user->first_name}}</a>
 
-                                @case($comment->user->first_name != null)
+                                        @break
+                                        
+                                    @case($comment->user->last_name != null)
 
-                                    <a href="users/{{$comment->user_id}}">{{$comment->user->first_name}}</a>
+                                        <a href="users/{{$comment->user_id}}">{{$comment->user->last_name}}</a>
 
-                                    @break
-                                    
-                                @case($comment->user->last_name != null)
+                                        @break
 
-                                    <a href="users/{{$comment->user_id}}">{{$comment->user->last_name}}</a>
+                                      @case($comment->user->middle_name != null)
 
-                                    @break
+                                        <a href="users/{{$comment->user_id}}">{{$comment->user->middle_name}}</a>
 
-                                  @case($comment->user->middle_name != null)
+                                        @break
 
-                                    <a href="users/{{$comment->user_id}}">{{$comment->user->middle_name}}</a>
+                                    @case($comment->user->city != null)
 
-                                    @break
+                                        <a href="users/{{$comment->user_id}}">{{$comment->user->city}}</a>
 
-                                @case($comment->user->city != null)
+                                        @break
 
-                                    <a href="users/{{$comment->user_id}}">{{$comment->user->city}}</a>
+                                     @case($comment->user->name != null)
 
-                                    @break
+                                        <a href="users/{{$comment->user_id}}">{{$comment->user->name}}</a>
 
-                                 @case($comment->user->name != null)
+                                        @break      
 
-                                    <a href="users/{{$comment->user_id}}">{{$comment->user->name}}</a>
+                                    @default
+                                         <a href="users/{{$comment->user_id}}">{{'Anonymous'}}</a>
+                                @endswitch
 
-                                    @break      
+                            </div>
+        
+                            <div class="panel-body">
 
-                                @default
-                                     <a href="users/{{$comment->user_id}}">{{'Anonymous'}}</a>
-                            @endswitch
+                                {{$comment->body}}
 
-                        </div>
-    
-                        <div class="panel-body">
+                            </div><!-- /panel-body -->
 
-                            {{$comment->body}}
+                        </div><!-- /panel panel-default -->
 
-                        </div><!-- /panel-body -->
+                    </div><!-- /col-sm-5 -->
 
-                    </div><!-- /panel panel-default -->
+                @endforeach
+                
+        </div>
 
-                </div><!-- /col-sm-5 -->
-
-            @endforeach
-            
-    </div>
-
-</div><!--row-->
-
+    </div><!--row-->
+</div>
 
 
