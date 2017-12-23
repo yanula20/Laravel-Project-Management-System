@@ -17,7 +17,14 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::check()) {
+
+            $users = User::all();
+
+            return view('users.index', ['users' => $users]);
+        }
+
+        return view('auth.login');
     }
 
     /**

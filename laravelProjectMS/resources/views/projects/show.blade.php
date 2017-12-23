@@ -37,49 +37,51 @@
         <!--Add Comment button -->
 
         <!-- Comments Form -->
+        @if(Auth::user()->role_id !== 3)
 
-        <div class="row container-fluid" style="background: white; margin: 2px;" >
-        
-            <form method="post" action="{{ route('comments.store') }}">
+            <div class="row container-fluid" style="background: white; margin: 2px;" >
+            
+                <form method="post" action="{{ route('comments.store') }}">
 
-                         {{ csrf_field() }}
+                             {{ csrf_field() }}
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <label for="company">Body*</label>
+                        <label for="company">Body*</label>
 
-                    <textarea placeholder="Enter Comment" style="resize: vertical" id="comment-content" name="body" rows="5"spellcheck="false" class="form-control autosize-target text-left"></textarea>
+                        <textarea placeholder="Enter Comment" style="resize: vertical" id="comment-content" name="body" rows="5"spellcheck="false" class="form-control autosize-target text-left"></textarea>
 
-                </div>
+                    </div>
 
-                <div class="form-group">
+                    <div class="form-group">
 
-                    <label  for="url"><span class="required">Proof of work done (url/photos)</span></label>
+                        <label  for="url"><span class="required">Proof of work done (url/photos)</span></label>
 
-                     <textarea placeholder="Enter link"  style="resize: vertical" id="comment-content" name="url" rows="1" spellcheck="false" class="form-control autosize-target text-left"></textarea>
+                         <textarea placeholder="Enter link"  style="resize: vertical" id="comment-content" name="url" rows="1" spellcheck="false" class="form-control autosize-target text-left"></textarea>
 
-                </div>
-                
-                <!-- Comments hidden fields -->
-                <input type="hidden" name="commentable_type" value="App\Project">
+                    </div>
+                    
+                    <!-- Comments hidden fields -->
+                    <input type="hidden" name="commentable_type" value="App\Project">
 
-                <input type="hidden" name="commentable_id"  value="{{ $project->id }}">
-                 <!-- Comments hidden fields -->
+                    <input type="hidden" name="commentable_id"  value="{{ $project->id }}">
+                     <!-- Comments hidden fields -->
 
-                 <div class="form-group">
+                     <div class="form-group">
 
-                    <input type="submit" class="btn btn-primary" value="Submit"/>
+                        <input type="submit" class="btn btn-primary" value="Submit"/>
 
-                </div>
-                                   
-            </form>
-       
-        </div>
+                    </div>
+                                       
+                </form>
+           
+            </div>
+
+        @endif
 
          <!-- Comments Form -->
     </div>
-
-   
+ 
 
 <!-- side bar menu -->
 
@@ -91,37 +93,46 @@
 
             <ol class="list-unstyled">
 
-                <li><a href="/projects/create">Add Project</a></li>
+                @if(Auth::user()->role_id !== 3)
 
-                <li><a href="/projects/{{$project->id}}/edit">Edit Project</a></li>
+                    <li><a href="/projects/create">Add Project</a></li>
 
-                <li><a href="/projects">All projects</a></li>
-              
-                
-                @if($project->user_id === Auth::user()->id)
+                    <li><a href="/projects/{{$project->id}}/edit">Edit Project</a></li>
 
-                <li>
-                    <a   
-                    href="#" onclick=" 
-
-                        var result = confirm('Are you sure you wish to delete this project?');
-
-                            if( result ){
-
-                                event.preventDefault();
-
-                                document.getElementById('delete-form').submit();
-                            }
-                    " style="color: red;" >Delete</a>
-
-                    <form id="delete-form" action="{{ route('projects.destroy',[$project->id]) }}" method="POST" style="display: none;">
-
-                        <input type="hidden" name="_method" value="delete">
-
-                            {{ csrf_field() }}
-                    </form>
+                    <li><a href="/projects">All projects</a></li>
                   
-                </li>
+                @endif
+
+                @if(Auth::user()->role_id === 3)
+
+                    <li><a href="/projects">All projects</a></li>
+                  
+                @endif
+
+                @if(Auth::user()->role_id !== 3)
+
+                    <li>
+                        <a   
+                        href="#" onclick=" 
+
+                            var result = confirm('Are you sure you wish to delete this project?');
+
+                                if( result ){
+
+                                    event.preventDefault();
+
+                                    document.getElementById('delete-form').submit();
+                                }
+                        " style="color: red;" >Delete</a>
+
+                        <form id="delete-form" action="{{ route('projects.destroy',[$project->id]) }}" method="POST" style="display: none;">
+
+                            <input type="hidden" name="_method" value="delete">
+
+                                {{ csrf_field() }}
+                        </form>
+                      
+                    </li>
 
                 @endif 
 
@@ -129,49 +140,52 @@
             <br/>
             
             <!-- Add members -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 ol-xs-12">
-                    <h5>Add Members to Project</h5>
-                    <div class="input-group">
-
-                         <form id="add-user" method="POST" action="{{ route('projects.adduser') }}">
-
-                            {{ csrf_field() }}
-
+            @if(Auth::user()->role_id !== 3)
+                <div class="row">
+                    
+                        <div class="col-lg-12 col-md-12 col-sm-12 ol-xs-12">
+                            <h5>Add Members to Project</h5>
                             <div class="input-group">
-                                
-                                <input type="hidden" name="project_id" value="{{$project->id}}" class="form-control">
 
-                                <span class="input-group-btn">Go!
-                                    <button style="border-color: lightgray;" type="submit" class="btn btn-default">Add!</button>
-                                </span><input type="text" name="email" required autofocus class="form-control" placeholder="Email" aria-label="Search for...">
-                               
+                                 <form id="add-user" method="POST" action="{{ route('projects.adduser') }}">
+
+                                    {{ csrf_field() }}
+
+                                    <div class="input-group">
+                                        
+                                        <input type="hidden" name="project_id" value="{{$project->id}}" class="form-control">
+
+                                        <span class="input-group-btn">Go!
+                                            <button style="border-color: lightgray;" type="submit" class="btn btn-default">Add!</button>
+                                        </span><input type="text" name="email" required autofocus class="form-control" placeholder="Email" aria-label="Search for...">
+                                       
+                                    </div>
+                                        
+                                </form>
+         
                             </div>
+                                <br/>
+                            <div>
                                 
-                        </form>
- 
-                    </div>
-                        <br/>
-                    <div>
-                        
-                        <h5>Team Members</h5>
+                                <h5>Team Members</h5>
 
-                        <ol class="list-unstyled">
-                            
-                            @foreach($project->users as $user)
+                                <ol class="list-unstyled">
+                                    
+                                    @foreach($project->users as $user)
 
-                                <li><a>{{ $user->email }}</a></li>
+                                        <li><a>{{ $user->email }}</a></li>
 
-                            @endforeach
+                                    @endforeach
 
-                        </ol>
+                                </ol>
 
-                    </div>
+                            </div>
 
-                </div>
-
-            </div>  
+                        </div>
+                    
+                    </div>  
              <!-- Add members -->
+                @endif
      </div>
 </div>
 <!-- side bar menu -->                   

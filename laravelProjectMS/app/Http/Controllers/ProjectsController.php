@@ -19,9 +19,9 @@ class ProjectsController extends Controller
     public function index()
     {
         
-        if( Auth::check()) {
+        if(Auth::check()) {
 
-            $projects = Project::where('user_id', Auth::user()->id)->get();
+            $projects = Project::all();
 
             return view('projects.index', ['projects' => $projects]);
 
@@ -115,20 +115,24 @@ class ProjectsController extends Controller
 
             $user = User::where('email', $request->input('email'))->first(); 
 
-            $projectUser = ProjectUser::where('user_id', $user->id)->where('project_id', $project->id)->first();
+            if(!$user) {
 
-            if($projectUser) {
-
-                return redirect()->route('projects.show', [ 'project' => $project->id])->with('errors', $request->input('email').' is already member of this Project!');
+                return redirect()->route('projects.show', [ 'project' => $project->id])->with('errors', $request->input('email').' is an invalid email!');
             }
 
-                if($user && $project) {
+                $projectUser = ProjectUser::where('user_id', $user->id)->where('project_id', $project->id)->first();
 
-                    $project->users()->attach($user->id); //attach the user to the project, then to ProjectUser
+                if($projectUser) {
 
-                    return redirect()->route('projects.show', [ 'project' => $project->id])->with('success', $request->input('email').' was added successfully');
-                }    
+                    return redirect()->route('projects.show', [ 'project' => $project->id])->with('errors', $request->input('email').' is already member of this Project!');
+                }
 
+                    if($user && $project) {
+
+                        $project->users()->attach($user->id); //attach the user to the project, then to ProjectUser
+
+                        return redirect()->route('projects.show', [ 'project' => $project->id])->with('success', $request->input('email').' was added successfully');
+                    }    
         }
 
         return redirect()->route('projects.show', [ 'project' => $project->id])->with('errors', $request->input('email').' This is not your project.');

@@ -3,7 +3,18 @@
 <div class="col-md-6 col-lg-6 col-md-offset-4 col-lg-offset-3">
     <div class="panel panel-primary">
         <!-- Default panel contents -->
-        <div class="panel-heading">Projects - Index <a style="border-color: white" class="pull-right btn btn-primary btn-sm" href="/projects/create">Add Project</a></div>
+        @if(Auth::user()->role_id === 1 || Auth::user()->role_id === 2)
+
+            <div class="panel-heading">Projects - Index <a style="border-color: white" class="pull-right btn btn-primary btn-sm" href="/projects/create">Add Project</a></div>
+        
+        @endif
+
+        @if(Auth::user()->role_id === 3)
+
+            <div class="panel-heading">Projects - Index <a style="border-color: white" class="pull-right btn btn-primary btn-sm hidden" href="/projects/create">Add Project</a></div>
+
+        @endif
+
         <div class="panel-body">
             <!-- List group -->
             <ul class="list-group">

@@ -11,8 +11,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/userProfile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/comments.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 
 </head>
 <body>
@@ -38,6 +40,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     @if(Auth::check())
+                        <!-- admin navbar -->
                         @if(Auth::user()->role_id === 1)
                             <ul class="nav navbar-nav">
                                 &nbsp;
@@ -45,9 +48,31 @@
                                 <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
                                 <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
                                 <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
-                                <li><a href="{{ route('roles.index')}}"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></i> All Roles</a></li>                                    
+                                <li><a href="{{ route('roles.index')}}"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></i> All Roles</a></li>
                             </ul>
                         @endif
+                        
+                        <!-- staff navbar -->
+                        @if(Auth::user()->role_id === 2)
+                            <ul class="nav navbar-nav">
+                                &nbsp;
+                                <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
+                                <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
+                                <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
+                            </ul>
+                        @endif
+                        
+                        <!-- user navbar -->
+                        @if(Auth::user()->role_id === 3)
+                            <ul class="nav navbar-nav">
+                                &nbsp;
+                                <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
+                                <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
+                                <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
+                                
+                            </ul>
+                        @endif
+
                     @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -89,11 +114,13 @@
                                     </a>
 
                                     <ul class="dropdown-menu">
+                                        <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
+                                        <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
+                                        <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                                Logout
+                                                         document.getElementById('logout-form').submit();"><i class="fa fa-power-off" aria-hidden="true"></i> Logout
                                             </a>
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -109,12 +136,14 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{ Auth::user()->name}}{{' > user'}} <span class="caret"></span>
                                     </a>
 
-                                    <ul class="dropdown-menu">
+                                     <ul class="dropdown-menu">
+                                        <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
+                                        <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
+                                        <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                                Logout
+                                                         document.getElementById('logout-form').submit();"><i class="fa fa-power-off" aria-hidden="true"></i> Logout
                                             </a>
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

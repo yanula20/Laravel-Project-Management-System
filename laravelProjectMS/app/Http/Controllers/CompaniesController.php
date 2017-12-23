@@ -25,7 +25,7 @@ class CompaniesController extends Controller
         if( Auth::check()) {
 
 
-            $companies = Company::where('user_id', Auth::user()->id)->get();
+            $companies = Company::all();
 
             return view('companies.index', ['companies' => $companies]);
 

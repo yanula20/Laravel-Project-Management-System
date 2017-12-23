@@ -13,9 +13,13 @@
 
     <!-- Example row of columns -->
     <div style="background: white; margin: 10px; ">
-
-            <a href="/projects/create/{{ $company->id }}" class="pull-right btn btn-primary btn-sm">Add Project</a>
             
+            @if(Auth::user()->role_id !== 3)
+
+                <a href="/projects/create/{{ $company->id }}" class="pull-right btn btn-primary btn-sm">Add Project</a>
+
+            @endif
+
             @foreach($company->projects as $project)
 
                 <div class="col-lg-4 col-md-4 col-sm-4">
@@ -24,7 +28,7 @@
 
                   <p class="text-danger"> {{$project->description}} </p>
 
-                  <p><a class="btn btn-primary" href="{{ route('projects.show', [$project->id])}}" role="button"> View Project »</a></p>
+                  <p><a class="btn btn-primary" href="{{ route('projects.show', [$project->id])}}" role="button">View Project</a></p>
 
                 </div>
 
@@ -40,53 +44,59 @@
         <h4>Actions</h4>
 
         <ol class="list-unstyled">
+            
+            @if(Auth::user()->role_id === 3)
 
-            <li><a href="/companies/{{$company->id}}/edit">Edit</a></li>
+                <li><a  href="/companies">All Companies</a></li>
 
-            <li><a href="/projects/create/{{ $company->id }}">Add Project</a></li>
+            @endif 
+                
+            @if(Auth::user()->role_id !== 3)
 
-            <li><a href="/companies">All Companies</a></li>
+                <li><a hidden href="/companies">All Companies</a></li>
 
-            <li><a href="/companies/create">New Company</a></li>
+                <li><a href="/companies/{{$company->id}}/edit">Edit</a></li>
+
+                <li><a href="/projects/create/{{ $company->id }}">Add Project</a></li>
+
+                <li><a href="/companies/create">New Company</a></li>
+
+            @endif
+               
             
             </br>
-            
-                <li>
-                    <a   
-                    href="#" onclick=" 
 
-                        var result = confirm('Are you sure you wish to delete this Company?');
+                @if(Auth::user()->id === $company->user_id)
 
-                            if( result ){
+                    <li>
+                        <a   
+                        href="#" onclick=" 
 
-                                event.preventDefault();
+                            var result = confirm('Are you sure you wish to delete this Company?');
 
-                                document.getElementById('delete-form').submit();
-                            }
-                    " style="color: red;" >Delete
+                                if( result ){
 
-                    </a>
+                                    event.preventDefault();
 
-                    <form id="delete-form" action="{{ route('companies.destroy',[$company->id]) }}" method="POST" style="display: none;">
+                                    document.getElementById('delete-form').submit();
+                                }
+                        " style="color: red;" >Delete
 
-                        <input type="hidden" name="_method" value="delete">
+                        </a>
 
-                            {{ csrf_field() }}
-                    </form>
+                        <form id="delete-form" action="{{ route('companies.destroy',[$company->id]) }}" method="POST" style="display: none;">
 
-                </li>
+                            <input type="hidden" name="_method" value="delete">
+
+                                {{ csrf_field() }}
+                        </form>
+
+                    </li>
+
+                @endif
         </ol>
 
     </div>
-
-    <!--<div class="sidebar-module">
-        <h4>Members</h4>
-        <ol class="list-unstyled">
-          <li><a href="#">March 2014</a></li>
-          <li><a href="#">February 2014</a></li>
-         
-        </ol>
-    </div>-->
    
 
  </div>
