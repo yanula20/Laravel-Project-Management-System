@@ -20,6 +20,8 @@
                         <p align="center">
                             <a href="#" class="btn btn-danger tip delete-action" title=""><i class="fa fa-trash-o"></i> Delete</a>
                             <a href="#" class="btn btn-info tip" title=""><i class="fa fa-cloud-download"></i> View</a>
+                            <a href="#" class="btn btn-info tip" title=""><i class="fa fa-clipboard" aria-hidden="true"></i>Assign to Project</a>
+                            <a href="#" class="btn btn-info tip" title=""><i class="fa fa-sticky-note-o" aria-hidden="true"></i>Assign to a Task</a>
                         </p>
                     </div>
                 </div>
