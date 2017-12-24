@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Project;
 use App\Company;
+use App\Comment;
 use App\ProjectUser;
 use App\User;
 use Illuminate\Http\Request;
@@ -21,7 +22,10 @@ class UsersController extends Controller
 
             $users = User::all();
 
-            return view('users.index', ['users' => $users]);
+            $projects = Project::where('user_id', Auth::user()->id)->get();
+
+            return view('users.index', ['users' => $users, 'projects' => $projects]);  
+            
         }
 
         return view('auth.login');
@@ -90,6 +94,6 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        
     }
 }

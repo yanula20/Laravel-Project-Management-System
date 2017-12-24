@@ -37,13 +37,17 @@
 }
 
 .btn {
+    margin: 1px;
+}
+/*.btn {
     font-weight: 700;
     height: 36px;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
     cursor: default;
-}
+
+}*/
 
 /*
  * Card component
@@ -73,6 +77,12 @@
     border-radius: 23px;
 }
 
+div.profile-btns-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 /*
  * Form styles
  */

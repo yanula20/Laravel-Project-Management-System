@@ -13,8 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/userProfile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/comments.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">   
 
 </head>
 <body>
@@ -44,11 +43,11 @@
                         @if(Auth::user()->role_id === 1)
                             <ul class="nav navbar-nav">
                                 &nbsp;
-                                <li><a href="{{ route('users.index') }}"><i class="fa fa-users" aria-hidden="true"></i> All Users</a></li>
-                                <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
-                                <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
-                                <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
-                                <li><a href="{{ route('roles.index')}}"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></i> All Roles</a></li>
+                                <li><a href="{{ route('users.index') }}"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+                                <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  Companies</a></li>
+                                <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> Projects</a></li>
+                                <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> Tasks</a></li>
+                                <li><a href="{{ route('roles.index')}}"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></i> Roles</a></li>
                             </ul>
                         @endif
                         
@@ -56,9 +55,10 @@
                         @if(Auth::user()->role_id === 2)
                             <ul class="nav navbar-nav">
                                 &nbsp;
-                                <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
-                                <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
-                                <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
+                                <li><a href="{{ route('users.index') }}"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+                                <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  Companies</a></li>
+                                <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> Projects</a></li>
+                                <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> Tasks</a></li>
                             </ul>
                         @endif
                         
@@ -66,9 +66,9 @@
                         @if(Auth::user()->role_id === 3)
                             <ul class="nav navbar-nav">
                                 &nbsp;
-                                <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
-                                <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
-                                <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
+                                <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  Companies</a></li>
+                                <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> Projects</a></li>
+                                <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> Tasks</a></li>
                                 
                             </ul>
                         @endif
@@ -89,11 +89,11 @@
                                     </a>
 
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('users.index') }}"><i class="fa fa-users" aria-hidden="true"></i> All Users</a></li>
-                                        <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
-                                        <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
-                                        <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
-                                        <li><a href="{{ route('roles.index')}}"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></i> All Roles</a></li>
+                                        <li><a href="{{ route('users.index') }}"><i class="fa fa-users" aria-hidden="true"></i>  Users</a></li>
+                                        <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>   Companies</a></li>
+                                        <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i>  Projects</a></li>
+                                        <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>  Tasks</a></li>
+                                        <li><a href="{{ route('roles.index')}}"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></i>  Roles</a></li>
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
@@ -114,9 +114,10 @@
                                     </a>
 
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
-                                        <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
-                                        <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
+                                        <li><a href="{{ route('users.index') }}"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+                                        <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  Companies</a></li>
+                                        <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> Projects</a></li>
+                                        <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> Tasks</a></li>
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
@@ -137,9 +138,9 @@
                                     </a>
 
                                      <ul class="dropdown-menu">
-                                        <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  All Companies</a></li>
-                                        <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> All Projects</a></li>
-                                        <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> All Tasks</a></li>
+                                        <li><a href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i>  Companies</a></li>
+                                        <li><a href="{{ route('projects.index')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> Projects</a></li>
+                                        <li><a href="{{ route('tasks.index')}}"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> Tasks</a></li>
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
