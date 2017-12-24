@@ -20,11 +20,23 @@ class UsersController extends Controller
     {
         if(Auth::check()) {
 
-            $users = User::all();
+            $users = User::all()->sortBy('role_id');
 
             $projects = Project::where('user_id', Auth::user()->id)->get();
 
-            return view('users.index', ['users' => $users, 'projects' => $projects]);  
+            $companies = Company::where('user_id', Auth::user()->id)->get();
+
+            if(!$projects) {
+
+                return redirect('route', 'users.index')->with('errors', "This user either has not or cannot create a project.");
+
+            } if (!$companies) {
+
+                return redirect('route', 'users.index')->with('errors', "This user either has not or cannot create a company");
+
+              } 
+
+                return view('users.index', ['users' => $users, 'projects' => $projects, 'companies' => $companies]);  
             
         }
 

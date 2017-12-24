@@ -7,26 +7,40 @@
 		<div class="stats-buttons-grid">
        <div class="row col-lg-12 col-md-12 col-sm-12">
         <div class="col-lg-4 ">
-  
+    
         @foreach($users as $user)
 
-            @if($user->role_id == 3)
+            @if($user->role_id != 1)
 
                 <div class="thumbnail" align="center">
-
+                    
+                    <!--User silhouette icon --> 
                     <div class="icon green" align="center">
                         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
                     </div>
-
+                    
+                    <!-- User caption --> 
                     <div class="caption" align="center">
                         <h3>{{$user->name}}</h3>
                         <p>{{$user->email}}</p>
                         <p>role:&nbsp;{{$user->role->name}}</p>
+
+
+                        @foreach($companies as $company => $attribute)
+
+                            @if($attribute->user_id === $user->id)
                         
+                                <p>company:&nbsp;{{$attribute->description}}</p>
+
+                            @endif
+
+                        @endforeach
+
                             <div class="profile-btns-container" align="center">
 
+                                <!--Delete button -->  
                                 @if($user->role_id == 3)
-                                    
+                                
                                     <li style="list-style: none">
                                         <a  
 
@@ -51,6 +65,8 @@
                                         </form>
                                       
                                     </li>
+
+                                    <!--Delete button --> 
 
                                 @endif
 
