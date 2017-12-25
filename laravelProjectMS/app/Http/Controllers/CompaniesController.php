@@ -37,6 +37,45 @@ class CompaniesController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function usersCompanies($id)
+    {
+        //$companies = Company::all();
+        if( Auth::check()) {
+
+            $user = User::where('id', $id)->first();
+
+            if(!$user) {
+
+                return back()->with('errors', 'User not found!');
+            } 
+
+
+            $companies = Company::where('user_id', $user->id)->get();
+
+            // $companies = Company::all();
+
+            if (!$companies) {
+
+                return back()->with('errors', 'Companies not found!');
+            }
+
+            return view('companies.users', ['id' => $user->id], ['companies' => $companies])->with('success', 'This may have worked!');
+
+        } 
+
+            return view('auth.login');
+       
+    }
+   
+
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -89,7 +128,7 @@ class CompaniesController extends Controller
 
         $company = Company::where('id', $company->id)->first();
         //$company = Company::find($company->id);
-        return view('companies.show', ['company' => $company]);
+        return view('companies.show',['company' => $company]);
         
     }
 

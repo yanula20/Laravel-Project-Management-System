@@ -40,6 +40,8 @@ Route::middleware(['auth'])->group(function() {
 
 	Route::resource('comments', 'CommentsController');
 
+	Route::get('companies/users/{id}', 'CompaniesController@usersCompanies')->name('companies.users');
+
 	Route::resource('companies', 'CompaniesController');
 
 	//user may be coming from a link or new w/o a company_id

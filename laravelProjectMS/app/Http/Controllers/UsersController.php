@@ -24,7 +24,7 @@ class UsersController extends Controller
 
             $projects = Project::where('user_id', Auth::user()->id)->get();
 
-            $companies = Company::where('user_id', Auth::user()->id)->get();
+            $companies = Company::all();
 
             if(!$projects) {
 
@@ -42,6 +42,7 @@ class UsersController extends Controller
 
         return view('auth.login');
     }
+ 
 
     /**
      * Show the form for creating a new resource.

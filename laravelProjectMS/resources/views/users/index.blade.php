@@ -7,7 +7,7 @@
 		<div class="stats-buttons-grid">
        <div class="row col-lg-12 col-md-12 col-sm-12">
         <div class="col-lg-4 ">
-    
+     
         @foreach($users as $user)
 
             @if($user->role_id != 1)
@@ -24,17 +24,20 @@
                         <h3>{{$user->name}}</h3>
                         <p>{{$user->email}}</p>
                         <p>role:&nbsp;{{$user->role->name}}</p>
+                        <p>user no:&nbsp;{{$user->id}}</p>
+                       
+                            @if($user->role_id != 3)
 
+                            <form id="users-companies" action="{{ route('companies.users', [$user->id]) }}" method="GET">
 
-                        @foreach($companies as $company => $attribute)
+                                    {{ csrf_field() }}
 
-                            @if($attribute->user_id === $user->id)
-                        
-                                <p>company:&nbsp;{{$attribute->description}}</p>
+                               <p><a><input style="color: white" type="Submit" class="btn btn-info" value="User's Companies"/></a></p>
 
+                            </form>
+                         
                             @endif
-
-                        @endforeach
+                            
 
                             <div class="profile-btns-container" align="center">
 
